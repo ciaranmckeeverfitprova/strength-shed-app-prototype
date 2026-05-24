@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strength Shed — Interactive Prototype</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+body {
+  background: linear-gradient(135deg, #0f1f17 0%, #1a3a2e 50%, #0f1f17 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow: hidden;
+}
+body::before {
+  content: '';
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.15), transparent 60%);
+  top: -200px;
+  right: -200px;
+  pointer-events: none;
+}
+body::after {
+  content: '';
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(74, 122, 90, 0.2), transparent 60%);
+  bottom: -150px;
+  left: -150px;
+  pointer-events: none;
+}
+.inner {
+  max-width: 1100px;
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+.header {
+  text-align: center;
+  color: var(--cream);
+  margin-bottom: 48px;
+}
+.logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.logo-mark {
+  width: 44px;
+  height: 44px;
+  background: var(--gold);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+}
+.logo-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 22px;
+  letter-spacing: 0.2em;
+  color: var(--cream);
+}
+.badge {
+  display: inline-block;
+  padding: 6px 14px;
+  background: rgba(201, 168, 76, 0.15);
+  color: var(--gold);
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+}
+h1 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: clamp(32px, 5vw, 52px);
+  letter-spacing: -0.03em;
+  margin-bottom: 16px;
+  line-height: 1.05;
+}
+.sub {
+  color: rgba(245, 241, 232, 0.7);
+  font-size: 16px;
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 24px;
+  margin-bottom: 40px;
+}
+.card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(20px);
+  border-radius: 24px;
+  padding: 36px;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.card:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(201, 168, 76, 0.4);
+  transform: translateY(-4px);
+}
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.1), transparent 70%);
+  pointer-events: none;
+}
+.card-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(201, 168, 76, 0.15);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+  margin-bottom: 24px;
+}
+.card h2 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: var(--cream);
+  font-weight: 800;
+  font-size: 26px;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+.card .subtitle {
+  color: var(--gold);
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 16px;
+}
+.card p {
+  color: rgba(245, 241, 232, 0.75);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+.card ul { list-style: none; margin-bottom: 28px; }
+.card li {
+  color: rgba(245, 241, 232, 0.85);
+  font-size: 13px;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.card li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--gold);
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.cta {
+  background: var(--gold);
+  color: var(--ink);
+  padding: 14px 24px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.card:hover .cta { background: var(--cream); }
+.footer {
+  text-align: center;
+  color: rgba(245, 241, 232, 0.5);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.footer strong { color: var(--gold); font-weight: 600; }
+</style>
+</head>
+<body>
+<div class="inner">
+  <div class="header">
+    <div class="logo-row">
+      <div class="logo-mark">S</div>
+      <div class="logo-text">STRENGTH SHED</div>
+    </div>
+    <div class="badge">Interactive Prototype · v1.0</div>
+    <h1>The gym's complete digital platform</h1>
+    <p class="sub">Two fully working previews. Tap any feature to see how it behaves. Switch between them at any time using the back button.</p>
+  </div>
+
+  <div class="cards">
+    <a href="mobile.html" class="card">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+      </div>
+      <div class="subtitle">For Members</div>
+      <h2>Mobile Member App</h2>
+      <p>The day-to-day experience members carry in their pocket. Book classes, message coaches, track progress, manage payments.</p>
+      <ul>
+        <li>Class booking with capacity & waitlist</li>
+        <li>In-app messaging with coaches</li>
+        <li>Progress tracking & video library</li>
+        <li>Payment history & membership management</li>
+        <li>Notifications & profile settings</li>
+      </ul>
+      <span class="cta">Open Member App
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+
+    <a href="owner.html" class="card">
+      <div class="card-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+      </div>
+      <div class="subtitle">For Louise & Daniel</div>
+      <h2>Owner Admin Platform</h2>
+      <p>The control room. Manage members, build the schedule, track revenue, message anyone in the gym, configure pricing and staff.</p>
+      <ul>
+        <li>Dashboard with KPIs & revenue charts</li>
+        <li>Full member database with profiles</li>
+        <li>Drag-friendly schedule editor</li>
+        <li>Class management & messaging inbox</li>
+        <li>Payments, reports & gym settings</li>
+      </ul>
+      <span class="cta">Open Owner Platform
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+      </span>
+    </a>
+  </div>
+
+  <div class="footer">
+    Built as an interactive proof-of-concept · <strong>Prepared by FitPro VA</strong> · Every button, screen, and flow is clickable
+  </div>
+</div>
+</body>
+</html>
