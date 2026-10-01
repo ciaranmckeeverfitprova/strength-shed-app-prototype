@@ -1,0 +1,91 @@
+@import url("fonts/fonts.css");
+
+:root {
+  --black: #0a0907;
+  --black-2: #13110d;
+  --gold-deep: #8a6a2b;
+  --gold: #c9a24a;
+  --gold-hi: #f1d98f;
+  --gold-grad: linear-gradient(100deg, #8a6a2b 0%, #d9b55e 28%, #f6e2a0 46%, #c79a3f 66%, #8f6c2a 100%);
+  --ivory: #f4efe4;
+  --muted: #a39a8a;
+  --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --sans: "Montserrat", "Helvetica Neue", Arial, sans-serif;
+  --m: 72px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; background: var(--black); }
+body { position: relative; color: var(--ivory); font-family: var(--serif); -webkit-font-smoothing: antialiased; }
+
+/* film grain + vignette over everything */
+body::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: 50;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  opacity: .07; mix-blend-mode: overlay;
+}
+
+/* ---------- photo zone ---------- */
+.photo {
+  position: absolute; left: 0; top: 0; width: 1080px;
+  background-size: cover; background-repeat: no-repeat;
+  filter: contrast(1.06) saturate(.92) sepia(.08) brightness(1.03);
+}
+.fade { /* fade into black, outside the photo filter */
+  position: absolute; left: 0; right: 0; z-index: 1;
+  background: linear-gradient(180deg, rgba(10,9,7,0) 0%, rgba(10,9,7,.5) 45%, rgba(10,9,7,.92) 85%, var(--black) 100%);
+}
+.topscrim { /* top scrim for furniture */
+  position: absolute; left: 0; right: 0; top: 0; height: 220px; z-index: 1;
+  background: linear-gradient(180deg, rgba(10,9,7,.78) 0%, rgba(10,9,7,.35) 55%, rgba(10,9,7,0) 100%);
+}
+
+/* ---------- furniture ---------- */
+.topbar {
+  position: absolute; z-index: 20; top: 58px; left: var(--m); right: var(--m);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.mark { height: 54px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.6)); }
+.count {
+  font-family: var(--sans); font-weight: 600; font-size: 20px; letter-spacing: .28em;
+  color: var(--ivory); text-shadow: 0 2px 10px rgba(0,0,0,.7);
+}
+.count b { color: var(--gold-hi); font-weight: 700; }
+
+.footer {
+  position: absolute; z-index: 20; left: var(--m); right: var(--m); bottom: 64px;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  font-family: var(--sans); font-size: 17px; font-weight: 600; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--muted);
+}
+.progress { flex: 1; display: flex; gap: 6px; }
+.progress i { flex: 1; height: 3px; background: rgba(244,239,228,.16); }
+.progress i.on { background: var(--gold-grad); }
+.swipe { color: var(--gold); white-space: nowrap; }
+
+/* ---------- type ---------- */
+.kicker {
+  font-family: var(--sans); font-weight: 600; font-size: 21px; letter-spacing: .42em;
+  text-transform: uppercase; color: var(--gold);
+  display: flex; align-items: center; gap: 22px;
+}
+.kicker::before { content: ""; width: 56px; height: 2px; background: var(--gold-grad); }
+.gold {
+  background: var(--gold-grad); -webkit-background-clip: text; background-clip: text;
+  color: transparent; -webkit-text-fill-color: transparent;
+}
+em { font-style: italic; }
+.rule { height: 2px; width: 120px; background: var(--gold-grad); }
+.block { position: absolute; left: var(--m); right: var(--m); z-index: 10; }
+.h1 { font-weight: 600; line-height: 1.08; letter-spacing: -.012em; }
+.body { font-weight: 400; color: var(--ivory); line-height: 1.32; }
+.muted { color: var(--muted); }
+.tag {
+  display: inline-block; font-family: var(--sans); font-weight: 700; font-size: 22px;
+  letter-spacing: .34em; text-transform: uppercase; color: var(--black);
+  background: var(--gold-grad); padding: 16px 22px 16px 30px;
+}
+.ghost {
+  position: absolute; z-index: 2; font-family: var(--serif); font-weight: 800; line-height: .8;
+  color: transparent; -webkit-text-stroke: 2px rgba(201,162,74,.22);
+}
