@@ -93,13 +93,14 @@ page(4, 'g-dark', f'''
 <div class="abs" style="left:0;top:0;width:1080px;height:800px;z-index:2;
   background:url(assets/laptop.jpg) 46% 30%/cover no-repeat"></div>
 <div class="abs" style="left:0;top:0;width:1080px;height:300px;z-index:3;background:linear-gradient(180deg,rgba(4,6,11,.75),transparent)"></div>
-<div class="abs" style="left:0;top:380px;width:1080px;height:440px;z-index:3;background:linear-gradient(180deg,transparent,#04060b 85%)"></div>
-<div class="abs" style="left:var(--m);top:610px;z-index:6"><span class="pill">{FLAKE}The offer</span></div>
-<div class="abs d" style="left:66px;top:680px;font-size:190px;z-index:6;white-space:nowrap">Tedious <span class="s" style="text-transform:none;font-size:140px;color:var(--blue-hi)">as hell.</span></div>
-<div class="abs" style="left:var(--m);top:910px;width:930px;z-index:6;font:400 40px/1.4 var(--sans);color:#c6d2e4">
+<div class="abs" style="left:0;top:360px;width:1080px;height:460px;z-index:3;background:linear-gradient(180deg,transparent,#061022 82%)"></div>
+<div class="abs" style="left:var(--m);top:540px;z-index:6"><span class="pill">{FLAKE}The offer</span></div>
+<div class="abs d" style="left:66px;top:612px;font-size:134px;z-index:6;white-space:nowrap">Admin &amp; backend</div>
+<div class="abs s" style="left:68px;top:728px;font-size:150px;line-height:1;z-index:6;color:var(--blue-hi)">automated.</div>
+<div class="abs" style="left:var(--m);top:925px;width:930px;z-index:6;font:400 40px/1.4 var(--sans);color:#c6d2e4">
   To automate the admin and repetitive tasks that are, quite honestly, tedious as hell.</div>
-<div class="abs" style="left:var(--m);top:1082px;width:930px;z-index:6;font:800 44px/1.25 var(--sans)">
-  Nobody wants to do them. <span class="hi">So you won&rsquo;t have to.</span></div>
+<div class="abs" style="left:var(--m);top:1092px;width:930px;z-index:6;font:800 44px/1.25 var(--sans)">
+  Nobody wants to do them. <span class="hi" style="white-space:nowrap">So you won&rsquo;t have to.</span></div>
 ''', logo_chip=True, snow_n=26)
 
 # 05 - freedom (balcony)
